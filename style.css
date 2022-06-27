@@ -16,11 +16,11 @@
     position: relative;
 }
 
-#carousel .gallery{
+#carousel #gallery{
     height: 100%;
 }
 
-.gallery img{
+#gallery img{
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -28,7 +28,7 @@
     display: none;
 }
 
-.gallery .active{
+#gallery .active{
     display: block;
 }
 
@@ -40,11 +40,11 @@
     cursor: pointer;
 }
 
-.prev{
+#prev{
     right: 104%;
 }
 
-.next{
+#next{
     left: 104%;
 }
 
