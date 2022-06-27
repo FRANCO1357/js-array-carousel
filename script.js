@@ -8,6 +8,9 @@
 // RECUPERO LA GALLERY
 const gallery = document.getElementById("gallery")
 
+// RECUPERO LA ROW
+const row = document.getElementById('row')
+
 // RECUPERO I PULSANTI
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
@@ -17,7 +20,6 @@ const imageList = ['img/01.jpg', 'img/02.jpg', 'img/03.jpg', 'img/04.jpg', 'img/
 
 // CREO LA VARIABILE DI APPOGGIO
 let imgNumber = 0;
-console.log(imgNumber);
 
 // CICLO FOR PER CREARE LE IMMAGINI
 for (i = 0; i < imageList.length; i++){
@@ -27,35 +29,61 @@ for (i = 0; i < imageList.length; i++){
 
     // STAMPO UN IMMAGINE DIVERSA AD OGNI CICLO
     gallery.innerHTML += images;
+
+    // STAMPO COLONNE E IMMAGINI NELA ROW
+    let col = `<div class="col"><img src="${imageList[i]}"></div>`;
+    row.innerHTML += col;
 }
 
+// SELEZIONO I TAG IMG DEL CAROSELLO E DO AL PRIMO LA CLASSE ACTIVE
 const currentImg = document.querySelectorAll('#gallery img');
 currentImg[imgNumber].classList.add('active');
 
+// SELEZIONO I TAG IMG DEL TUMBNAIL E DO AL PRIMO LA CLASSE ACTIVE
+const currentTumbnail = document.querySelectorAll('.tumbnail img');
+currentTumbnail[imgNumber].classList.add('active');
+
+// LOGICA DEL PULSANTE NEXT
 nextButton.addEventListener('click', function(){
 
+    // RIMUOVO LA CLASSE ACTIVE DALLE IMMAGINI CORRENTI
     currentImg[imgNumber].classList.remove('active');
+    currentTumbnail[imgNumber].classList.remove('active');
+
+    // CAMBIO IMMAGINE
     imgNumber += 1;
     console.log(imgNumber);
 
+    // TORNO INDIETRO SE SONO ALL'ULTIMA IMMAGINE
     if(imgNumber === imageList.length){
         imgNumber = 0;
     }
 
+    // AGGIUNGO LA CLASSE ACTIVE ALL'IMMAGINE SUCCESSIVA
     currentImg[imgNumber].classList.add('active');
+    currentTumbnail[imgNumber].classList.add('active');
 })
 
+// LOGICA DEL PULSANTE PREV
 prevButton.addEventListener('click', function(){
 
+    // RIMUOVO LA CLASSE ACTIVE DALLE IMMAGINI CORRENTI
     currentImg[imgNumber].classList.remove('active');
+    currentTumbnail[imgNumber].classList.remove('active');
 
+    // TORNO ALL'ULTIMA IMMAGINE SE SONO ALLA PRIMA IMMAGINE
     if(imgNumber == 0){
         imgNumber = 4;
         currentImg[imgNumber].classList.add('active');
-    } else {
+        currentTumbnail[imgNumber].classList.add('active');
+    } 
+    
+    // ALTRIMENTI VADO ALL'IMMAGINE PRECEDENTE
+    else {
         imgNumber -= 1;
         console.log(imgNumber);
         currentImg[imgNumber].classList.add('active');
+        currentTumbnail[imgNumber].classList.add('active');
     }
 })
 
