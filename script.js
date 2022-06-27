@@ -15,4 +15,5 @@ const nextButton = document.getElementsByClassName('next');
 
 nextButton.addEventListener('click', function(){
     currentActiveIndex++ ;
-})
+    images[currentActiveIndex].classList('active');
+});
