@@ -8,11 +8,16 @@
 // RECUPERO LA GALLERY
 const gallery = document.getElementById("gallery")
 
+// RECUPERO I PULSANTI
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+
 // RECUPERO LA LISTA DI IMMAGINI
 const imageList = ['img/01.jpg', 'img/02.jpg', 'img/03.jpg', 'img/04.jpg', 'img/05.jpg'];
 
 // CREO LA VARIABILE DI APPOGGIO
 let imgNumber = 0;
+console.log(imgNumber);
 
 // CICLO FOR PER CREARE LE IMMAGINI
 for (i = 0; i < imageList.length; i++){
@@ -24,5 +29,33 @@ for (i = 0; i < imageList.length; i++){
     gallery.innerHTML += images;
 }
 
-// AGGIUNGO LA CLASSE ACTIVE ALL'IMMAGINE CORRENTE
-document.querySelectorAll('img')[imgNumber].classList.add('active');
+const currentImg = document.querySelectorAll('#gallery img');
+currentImg[imgNumber].classList.add('active');
+
+nextButton.addEventListener('click', function(){
+
+    currentImg[imgNumber].classList.remove('active');
+    imgNumber += 1;
+    console.log(imgNumber);
+
+    if(imgNumber === imageList.length){
+        imgNumber = 0;
+    }
+
+    currentImg[imgNumber].classList.add('active');
+})
+
+prevButton.addEventListener('click', function(){
+
+    currentImg[imgNumber].classList.remove('active');
+
+    if(imgNumber == 0){
+        imgNumber = 4;
+        currentImg[imgNumber].classList.add('active');
+    } else {
+        imgNumber -= 1;
+        console.log(imgNumber);
+        currentImg[imgNumber].classList.add('active');
+    }
+})
+
