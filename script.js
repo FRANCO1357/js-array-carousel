@@ -22,7 +22,7 @@ const imageList = ['img/01.jpg', 'img/02.jpg', 'img/03.jpg', 'img/04.jpg', 'img/
 let imgNumber = 0;
 
 // CICLO FOR PER CREARE LE IMMAGINI
-for (i = 0; i < imageList.length; i++){
+for (let i = 0; i < imageList.length; i++){
 
     // CREO L'ELEMENTO IMMAHINE
     let images = `<img src="${imageList[i]}">`;
@@ -73,7 +73,7 @@ prevButton.addEventListener('click', function(){
 
     // TORNO ALL'ULTIMA IMMAGINE SE SONO ALLA PRIMA IMMAGINE
     if(imgNumber == 0){
-        imgNumber = 4;
+        imgNumber = imageList.length - 1;
         currentImg[imgNumber].classList.add('active');
         currentTumbnail[imgNumber].classList.add('active');
     } 
